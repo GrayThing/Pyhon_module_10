@@ -102,7 +102,7 @@ def introspection_info(obj):
     for attr in dir(obj):
         if callable(getattr(obj, attr)):
             methods.append(attr)
-        elif not inspect.isbuiltin(getattr(obj, attr)):
+        else:
             attributes.append(attr)
     return {
         'Тип объекта': type(obj).__name__,

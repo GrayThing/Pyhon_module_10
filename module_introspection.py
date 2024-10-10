@@ -104,16 +104,19 @@ def introspection_info(obj):
             methods.append(attr)
         else:
             attributes.append(attr)
+    try:
+        module = inspect.getmodule(obj).__name__
+    except:
+        module = __name__
     return {
         'Тип объекта': type(obj).__name__,
         'Атрибуты объекта': attributes,
         'Методы объекта': methods,
-        'Модуль': inspect.getmodule(type(obj)).__name__,
+        'Модуль': module,
         'Встроенные методы': [attr for attr in dir(obj) if inspect.isbuiltin(getattr(obj, attr))]
     }
 
 
-number_info = introspection_info(cube)
+number_info = introspection_info(14)
 pprint(number_info)
-
 
